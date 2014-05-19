@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Document</title>
+    <script type="text/javascript" src="./bower_components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="./src/hxValidator.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+    <h2>Form test</h2>
+    <form>
+      <fieldset>
+        <div class="hxValidator-field">
+          <label for="username"><i class="icon-gl2 icon-white-user" title="用户名"></i></label>
+          <input name="username" type="text" data-max-length="10" data-required="true" data-min-length="3" id="username" value='' placeholder="用户名"></input>
+          <span class='hints'>长度为3-16位，由字母、数字和下划线组成</span>
+          <i class="icon-gl2 icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div class="hxValidator-field">
+          <label for="email"><i class="icon-gl2 icon-white-email" title="邮箱"></i></label>
+          <input name="email" type="text" data-email="true" id="email" value='' placeholder="邮箱"></input>
+          <span class='hints'></span>
+          <i class="icon-gl2 icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div class="hxValidator-field">
+          <label for="password"><i class="icon-gl2 icon-white-unlock" title="密码"></i></label>
+          <input name="password" type="password" data-max-length="10" data-min-length="3" id="password" placeholder="密码"></input>
+          <span class='hints'></span>
+          <i class="icon-gl2 icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div class="hxValidator-field">
+          <label for="comfirm_password"><i class="icon-gl2 icon-white-lock" title="确认密码"></i></label>
+          <input name="comfirm_password" type="password" data-required="true" data-match="password|密码" id="comfirm_password" placeholder="确认密码"></input>
+          <span class='hints'></span>
+          <i class="icon-gl2 icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div>
+          <input name="submit" type="submit" value='提交'></input>
+        </div>
+      </fieldset>
+    </form>
+    <script type="text/javascript">
+      var formValidate = new hxValidator('form');
+    </script>
+</body>
+</html>

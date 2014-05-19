@@ -1,6 +1,6 @@
 'use strict';
 
-var hx-validator = require('../src/hx-validator.js');
+var hx-validator = require('../src/hxValidator.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
