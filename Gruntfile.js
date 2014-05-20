@@ -12,7 +12,7 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
     banner: '/*! <%= pkg.name %> \n' + '* v<%= pkg.version %> \n' +
       '* <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '* <%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
+      '* <%= pkg.homepage ? " " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed MIT */\n\n\n',
     // Task configuration.
