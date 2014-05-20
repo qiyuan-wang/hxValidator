@@ -28,9 +28,16 @@
   background-position: -24px -186px;
 }
 
-
 .icon-white-user {
    background-position: -48px -186px;
+}
+
+.icon-white-phone {
+  background-position: -145px -186px;
+}
+
+.icon-white-cellphone {
+  background-position: -167px -186px;
 }
 
 .icon-error {

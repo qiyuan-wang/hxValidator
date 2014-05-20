@@ -158,13 +158,17 @@ hxValidator.prototype._checkMethods = {
     if(needed) { return (!field.value || field.value === '' || field.value === undefined) }
   },
   minLength: function(field, length) {
-    return (field.value.length < length);
+    // if contains Chinese characters, count 1 as 3.
+    var input_value = field.value.replace(/[^\x00-\xff]/g,"***");
+    return (input_value.length < length);
   },
   maxLength: function(field, length) {
-    return (field.value.length > length);
+    // if contains Chinese characters, count 1 as 3.
+    var input_value = field.value.replace(/[^\x00-\xff]/g,"***");
+    return (input_value.length > length);
   },
   phone: function(field, needed) {
-    if(needed) { return phoneRegex.test(field.value) }
+    if(needed) { return !phoneRegex.test(field.value) }
   },
   email: function(field, needed) {
     if(needed && field.value.length !== 0) { return !emailRegex.test(field.value) }
