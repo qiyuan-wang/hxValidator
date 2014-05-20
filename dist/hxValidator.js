@@ -1,6 +1,6 @@
 /*! hxValidator 
-* v0.0.0 
-* 2014-05-16
+* v0.0.1 
+* 2014-05-20
 * * http://www.huxiu.com
 * Copyright (c) 2014 zisasign; Licensed MIT */
 
@@ -42,7 +42,6 @@ var hxValidator = function(formElement, options) {
   this.successCallback = options['successCallback'] || defaults['successCallback'];
   this.focusCallback =  options['focusCallback'] || defaults['focusCallback'];
   this._checkMethods = $.extend({}, this._checkMethods, options['customCheckMethods']);
-  this.failed = false;
   
   var inputs = this.form.find('input[type!=hidden][type!=submit]');
   for (var i = 0; i < inputs.length; i++) {
@@ -62,15 +61,15 @@ var hxValidator = function(formElement, options) {
 };
 
 hxValidator.prototype._validateForm = function(evt) {
-  
+  var flag = false;
   for (var fieldName in this.fields) {
     if(this.fields.hasOwnProperty(fieldName)) {
       var field = this.fields[fieldName];
-      this._validateField.call(this, field);
+      if(field.failed === null) {this._validateField(field)}
+      flag = flag || field.failed;
     }
   }
-  
-  if(this.failed) {
+  if(flag) {
     return false;
   } else {
     return true;
@@ -86,17 +85,18 @@ hxValidator.prototype._addField = function(elem) {
     errors: $elem.siblings(this.errorsClass),
     hints: $elem.siblings(this.hintsClass),
     wrapper: $elem.parent(this.wrapperClass),
-    value: null
+    value: null,
+    failed: null
   }
 }
 
 hxValidator.prototype._validateField = function(field) {
-  var rules = field.rules,
-      failed = false;
-      field.value = field.element.val();
-  
+  var rules = field.rules;
+  field.value = field.element.val();
+
   if (rules['required'] && this._checkMethods['required'].apply(this, [field, true])) {
-    this.failed = true;
+    
+    field.failed = true;
     this._addError(field, "required");
     return;
   }
@@ -104,13 +104,16 @@ hxValidator.prototype._validateField = function(field) {
   for(var ruleName in rules) {
     if(rules.hasOwnProperty(ruleName) && ruleName !== 'required') {
       var rule = rules[ruleName];
-      this.failed = failed = this._checkMethods[ruleName].apply(this, [field, rule]);
+      field.failed = this._checkMethods[ruleName].apply(this, [field, rule]);
+      
+      if(field.failed) {
+        this._addError(field, ruleName, rule);
+        return;
+      } 
     }
-    if(failed) {
-      this._addError(field, ruleName, rule);
-      return;
-    } 
   }
+  
+  field.failed = false;
   this._addSuccess(field);
 }
 
@@ -156,13 +159,17 @@ hxValidator.prototype._checkMethods = {
     if(needed) { return (!field.value || field.value === '' || field.value === undefined) }
   },
   minLength: function(field, length) {
-    return (field.value.length < length);
+    // if contains Chinese characters, count 1 as 3.
+    var input_value = field.value.replace(/[^\x00-\xff]/g,"***");
+    return (input_value.length < length);
   },
   maxLength: function(field, length) {
-    return (field.value.length > length);
+    // if contains Chinese characters, count 1 as 3.
+    var input_value = field.value.replace(/[^\x00-\xff]/g,"***");
+    return (input_value.length > length);
   },
   phone: function(field, needed) {
-    if(needed) { return phoneRegex.test(field.value) }
+    if(needed) { return !phoneRegex.test(field.value) }
   },
   email: function(field, needed) {
     if(needed && field.value.length !== 0) { return !emailRegex.test(field.value) }
