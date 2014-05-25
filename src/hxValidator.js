@@ -27,7 +27,7 @@ var defaults = {
 };
 
 var phoneRegex = /^1[3-8]\d{9}$/,
-    emailRegex = /^[a-zA-Z0-9.!#$%&amp;'*+\-\/=?\^_`{|}~\-]+@[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*$/;
+    emailRegex = /^[a-zA-Z0-9.!#$%&amp;'*+\-\/=?\^_`{|}~\-]+@[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]{2,})+$/;
 
 var hxValidator = function(formElement, options) {
   var options = options || {};
