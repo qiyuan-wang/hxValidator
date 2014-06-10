@@ -13,6 +13,8 @@ var defaults = {
     maxLength: "此项要求最多%s个字符长度",
     phone: "手机格式错误",
     email: "邮件格式错误",
+    number: "此项只能输入数字",
+    notAllNumber: "此项不能全为数字",
     match: "与%s输入不一致"
   },
   errorCallback: function(field) {
@@ -27,6 +29,7 @@ var defaults = {
 };
 
 var phoneRegex = /^1[3-8]\d{9}$/,
+    numberRegex = /^[0-9]+$/,
     emailRegex = /^[a-zA-Z0-9.!#$%&amp;'*+\-\/=?\^_`{|}~\-]+@[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]{2,})+$/;
 
 var hxValidator = function(formElement, options) {
@@ -172,6 +175,12 @@ hxValidator.prototype._checkMethods = {
   },
   email: function(field, needed) {
     if(needed && field.value.length !== 0) { return !emailRegex.test(field.value) }
+  },
+  number: function(field, needed) {
+    if(needed && field.value.length !== 0) { return !numberRegex.test(field.value) }
+  },
+  notAllNumber: function(field, needed) {
+    if(needed && field.value.length !== 0) { return numberRegex.test(field.value) }
   },
   match: function(field, condition) {
     var value = (typeof condition === 'string' && condition.indexOf("|") > 0) ? condition.split('|')[0] : condition;
