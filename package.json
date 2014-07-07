@@ -1,6 +1,6 @@
 {
   "name": "hxValidator",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Form validator that huxiu.com used.",
   "keywords": [
     "jquery-plugin"
