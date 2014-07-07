@@ -106,25 +106,31 @@ hxValidator.prototype._validateField = function(field) {
   
   for(var ruleName in rules) {
     if(rules.hasOwnProperty(ruleName) && ruleName !== 'required') {
-      if(ruleName.match(/^remote.+/i)) {
+      if(ruleName.match(/Remote$/)) {
+        console.log(ruleName);
         remoteRuleName = ruleName;
-      } else { 
+      } else {
         var rule = rules[ruleName];
+        this._applyCheck.apply(this, [field, ruleName, rule])
         field.failed = this._checkMethods[ruleName].apply(this, [field, rule]);
+        if(field.failed) {
+          this._addError(field, ruleName, rule);
+          return;
+        }
       }
     }
   }
   
   // make the remote check last called
   if(remoteRuleName) {
-    var rule = rules[ruleName];
-    field.failed = this._checkMethods[ruleName].apply(this, [field, rule]);
+    var rule = rules[remoteRuleName];
+    field.failed = this._checkMethods[remoteRuleName].apply(this, [field, rule]);
+    if(field.failed) {
+      this._addError(field, remoteRuleName, rule);
+      return;
+    }
   }
   
-  if(field.failed) {
-    this._addError(field, ruleName, rule);
-    return;
-  }
   field.failed = false;
   this._addSuccess(field);
 }
