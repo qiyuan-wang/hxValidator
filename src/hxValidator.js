@@ -107,11 +107,9 @@ hxValidator.prototype._validateField = function(field) {
   for(var ruleName in rules) {
     if(rules.hasOwnProperty(ruleName) && ruleName !== 'required') {
       if(ruleName.match(/Remote$/)) {
-        console.log(ruleName);
         remoteRuleName = ruleName;
       } else {
         var rule = rules[ruleName];
-        this._applyCheck.apply(this, [field, ruleName, rule])
         field.failed = this._checkMethods[ruleName].apply(this, [field, rule]);
         if(field.failed) {
           this._addError(field, ruleName, rule);
