@@ -65,6 +65,9 @@ var hxValidator = function(id, options) {
     }
   }
   
+  this.form.addEventListener("submit",this._validateForm.call(this));
+  
+  
   // helper methods
   // get all inputs without type of submit or button
   function getValidInputs() {
@@ -95,6 +98,7 @@ var hxValidator = function(id, options) {
     }
     return obj;
   }
+  
 }
 
 // small-Camelize text
@@ -143,7 +147,7 @@ hxValidator.prototype._addField = function(elem) {
     hints: elem.parentNode.getElementsByClassName(this.hintsClass)[0],
     wrapper: elem.parentNode,
     value: null,
-    failed: null
+    passed: null
   }
 }
 
@@ -184,13 +188,33 @@ hxValidator.prototype._validateField = function(field) {
       }
     }
     field.passed = true;
+    
     that._addSuccess(field);
   }
 }
 
+hxValidator.prototype._validateForm = function() {
+  var that = this;
+  return function(evt) {
+    var flag = true;
+    for (var fieldName in that.fields) {
+      if(that.fields.hasOwnProperty(fieldName)) {
+        var field = that.fields[fieldName];
+        if(field.passed === null) {(that._validateField(field))();}
+        flag = flag && field.passed;
+      }
+    }
+    if(flag) {
+      return true;
+    } else {
+      evt.preventDefault();
+      return false;
+    }
+  } 
+}
+
 hxValidator.prototype._checkMethods = {
   required: function(field, needed) {
-    console.log(field);
     if(!!needed) { return (field.value && field.value !== '' && field.value !== undefined) }
   },
   minLength: function(field, length) {
