@@ -21,61 +21,54 @@ module.exports = function (grunt) {
         banner: '<%= banner %>',
         stripBanners: true
       },
-      base: {
+      jquery: {
         src: ['common/header.js' ,'src/<%= pkg.name %>.js', 'common/footer.js'],
-        dest: 'dist/<%= pkg.name %>_common.js',
+        dest: 'dist/<%= pkg.name %>_jquery.js',
       },
       seajs: {
         src: ['seajs/header.js' ,'src/<%= pkg.name %>.js', 'seajs/footer.js'],
         dest: 'dist/<%= pkg.name %>.js',
       },
+      pure: {
+        src: ['pure/header.js' ,'src/<%= pkg.name %>_pure.js', 'pure/footer.js'],
+        dest: 'dist/<%= pkg.name %>_pure.js',
+      }
     },
     uglify: {
       options: {
         banner: '<%= banner %>'
       },
+      jquery: {
+        src: "<%= concat.jquery.dest %>",
+        dest: "dist/<%= pkg.name %>_jquery_min.js"
+      },
+      seajs: {
+        src: "<%= concat.seajs.dest %>",
+        dest: "dist/<%= pkg.name %>_seajs_min.js"
+      },
+      pure: {
+        src: "<%= concat.pure.dest %>",
+        dest: "dist/<%= pkg.name %>_pure_min.js"
+      },
+    },
+    clean: {
       dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
-      },
-    },
-    nodeunit: {
-      files: ['test/**/*_test.js']
-    },
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
-      },
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      lib: {
-        options: {
-          jshintrc: 'src/.jshintrc'
-        },
-        src: ['src/**/*.js']
-      },
-      test: {
-        src: ['test/**/*.js']
-      },
-    },
-    watch: {
-      gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
-      },
-      lib: {
-        files: '<%= jshint.lib.src %>',
-        tasks: ['jshint:lib', 'nodeunit']
-      },
-      test: {
-        files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'nodeunit']
-      },
+        files: [{
+          dot: true,
+          src: [
+            'dist/*'
+          ]
+        }]
+      },    
     },
   });
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+
+  grunt.registerTask('build', [
+      'clean:dist',
+      'concat',
+      'uglify'
+  ]);
 };
