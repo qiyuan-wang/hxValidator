@@ -59,13 +59,12 @@ var hxValidator = function(id, options) {
   for (var fieldName in this.fields) {
     if(this.fields.hasOwnProperty(fieldName)) {
       var field = this.fields[fieldName];
-      
-      field.element.addEventListener("blur", this._validateField.call(this, field));
-      field.element.addEventListener("focus", this._focusField.call(this, field));
+      field.element.addEventListener("blur", this._validateField.bind(this, field));
+      field.element.addEventListener("focus", this._focusField.bind(this, field));
     }
   }
   
-  this.form.addEventListener("submit",this._validateForm.call(this));
+  this.form.addEventListener("submit",this._validateForm.bind(this));
   
   
   // helper methods
@@ -153,64 +152,58 @@ hxValidator.prototype._addField = function(elem) {
 
 hxValidator.prototype._validateField = function(field) {
   var rules = field.rules,
-      remoteRuleName = null
-      that = this;      
+      remoteRuleName = null;
+      
+  field.value = field.element.value; 
+  if (rules['required'] && !this._checkMethods['required'].apply(this, [field, rules['required']])) {
+    field.passed = false;
+    this._addError.apply(this, [field, "required"]);
+    return;
+  }
   
-  return function() {
-    field.value = field.element.value; 
-    if (rules['required'] && !that._checkMethods['required'].apply(that, [field, rules['required']])) {
-      field.passed = false;
-      that._addError.apply(that, [field, "required"]);
-      return;
-    }
-    
-    for(var ruleName in rules) {
-      if(rules.hasOwnProperty(ruleName) && ruleName !== 'required') {
-        if(ruleName.match(/Remote$/)) {
-          remoteRuleName = ruleName;
-        } else {
-          var rule = rules[ruleName];
-          field.passed = that._checkMethods[ruleName].apply(that, [field, rule]);
-          if(!field.passed) {
-            that._addError(field, ruleName, rule);
-            return;
-          }
+  for(var ruleName in rules) {
+    if(rules.hasOwnProperty(ruleName) && ruleName !== 'required') {
+      if(ruleName.match(/Remote$/)) {
+        remoteRuleName = ruleName;
+      } else {
+        var rule = rules[ruleName];
+        field.passed = this._checkMethods[ruleName].apply(this, [field, rule]);
+        if(!field.passed) {
+          this._addError(field, ruleName, rule);
+          return;
         }
       }
     }
-    //   make the remote check last called
-    if(remoteRuleName) {
-      var rule = rules[remoteRuleName];
-      field.passed = this._checkMethods[remoteRuleName].apply(that, [field, rule]);
-      if(!field.passed) {
-        that._addError(field, remoteRuleName, rule);
-        return;
-      }
-    }
-    field.passed = true;
-    
-    that._addSuccess(field);
   }
+  //   make the remote check last called
+  if(remoteRuleName) {
+    var rule = rules[remoteRuleName];
+    field.passed = this._checkMethods[remoteRuleName].apply(this, [field, rule]);
+    if(!field.passed) {
+      this._addError(field, remoteRuleName, rule);
+      return;
+    }
+  }
+  field.passed = true;
+  
+  this._addSuccess(field);
 }
 
-hxValidator.prototype._validateForm = function() {
-  var that = this;
-  return function(evt) {
-    var flag = true;
-    for (var fieldName in that.fields) {
-      if(that.fields.hasOwnProperty(fieldName)) {
-        var field = that.fields[fieldName];
-        if(field.passed === null) {(that._validateField(field))();}
-        flag = flag && field.passed;
-      }
+hxValidator.prototype._validateForm = function(evt) {
+  var flag = true;
+  for (var fieldName in this.fields) {
+    if(this.fields.hasOwnProperty(fieldName)) {
+      var field = this.fields[fieldName];
+      if(field.passed === null) {this._validateField(field);}
+      flag = flag && field.passed;
     }
-    if(flag) {
-      return true;
-    } else {
-      evt.preventDefault();
-      return false;
-    }
-  } 
+  }
+  if(flag) {
+    return true;
+  } else {
+    evt.preventDefault();
+    return false;
+  }
 }
 
 hxValidator.prototype._checkMethods = {
@@ -231,7 +224,6 @@ hxValidator.prototype._checkMethods = {
     if(!!needed) { return phoneRegex.test(field.value) }
   },
   email: function(field, needed) {
-    console.log(field);
     if(!!needed && field.value.length !== 0 && field.value !== undefined) { return emailRegex.test(field.value) }
   },
   number: function(field, needed) {
@@ -242,7 +234,6 @@ hxValidator.prototype._checkMethods = {
   },
   match: function(field, condition) {
     var value = (typeof condition === 'string' && condition.indexOf("|") > 0) ? condition.split('|')[0] : condition;
-    console.log(this.form[value]);
     var el = this.form[value];
     if (el) {
       return field.value === el.value;
