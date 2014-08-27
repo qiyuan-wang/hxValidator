@@ -1,56 +1,26 @@
 # hx-validator
 
-Form validator that huxiu.com used.
+Just write your requirements on DOM data- attributes, **hx-Validator** would handle the rest.
 
-## Getting Started
-### On the server
-Install the module with: `npm install hx-validator`
 
-```javascript
-var hx-validator = require('hx-validator');
-hx-validator.awesome(); // "awesome"
-```
+## Quick Start
 
-### In the browser
-Download the [production version][min] or the [development version][max].
+Get the code and require it in your HTML:
 
-[min]: https://raw.github.com/zephyrisalive/hx-validator/master/dist/hx-validator.min.js
-[max]: https://raw.github.com/zephyrisalive/hx-validator/master/dist/hx-validator.js
+    <script src="/your/path/to/hx-validator.js"></scirpt>     
+   
+Wrap input tag in a div with class **hxValidator-field** and write your requirements for this input in its data- attibutes:
 
-In your web page:
+    <div class="hxValidator-field">
+        <input name="email" type="text" data-email="true"  data-required="true" id="email" value='' placeholder="EMail" />
+    </div>
 
-```html
-<script src="dist/hx-validator.min.js"></script>
-<script>
-awesome(); // "awesome"
-</script>
-```
+Tell hxValidator which form you want to validate by Id:
 
-In your code, you can attach hx-validator's methods to any object.
+    <script> var formValidate = new hxValidator('hxValidator'); </script>
 
-```html
-<script>
-var exports = Yeoman.utils;
-</script>
-<script src="dist/hx-validator.min.js"></script>
-<script>
-Yeoman.utils.awesome(); // "awesome"
-</script>
-```
+It's done!  
 
-## Documentation
-_(Coming soon)_
-
-## Examples
-_(Coming soon)_
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-_Also, please don't edit files in the "dist" subdirectory as they are generated via Grunt. You'll find source code in the "lib" subdirectory!_
-
-## Release History
-_(Nothing yet)_
 
 ## License
  
