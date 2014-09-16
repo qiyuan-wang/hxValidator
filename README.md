@@ -1,6 +1,6 @@
 # hx-validator.js
 
-Just write your requirements on DOM data- attributes, **hx-Validator** would handle the rest.
+Just write the requirements on DOM data- attributes, **hx-Validator** would handle the validation stuff.
 
 And it's pure js.
 
@@ -8,7 +8,7 @@ And it's pure js.
 
 * Pure javacript, no more libraries for dependency.
 * Easy to use, only data- attributes and one line js.
-* Easy to customize, you can specialize those classes names and styles.
+* Easy to customize, you can change those classes names and styles * at your ease.
 * Easy to extend, you can write your own validating function for special inputs easily.
 * Supports validating inputs value with:
     - required
@@ -19,16 +19,17 @@ And it's pure js.
     - not-all-number format
     - matching another input value(password confirmation, for example)
     - **your own validating format**
+    
 * Current version only supports text or password type of inputs, and will support checkbox in next few versions.
 
 ### Browser Compatibility
 
 Tested in the following browsers/versions:
 
-* Google Chrome 4.0+
-* Internet Explorer 9.0+
-* Firefox 3.5+
-* Safari 4.0+
+* Google Chrome 27+
+* Internet Explorer 9.0+ (Sorry, IE8)
+* Firefox 30+
+* Safari 5.1+
 
 Don't have much time and conditions on Compatibility test, and let me know if you got any information about this.
 
@@ -128,6 +129,71 @@ That'all, no magic.
 
 ## Options
 
+All those below you can customize.
+
+### **wrapperClass**
+
+`default: "hxValidator-field"`
+
+Wrapper tag's class.
+
+### **errorsClass**
+
+`default: "errors"`
+
+Errors tag's class.
+
+### **hintsClass**
+
+`default: "errors"`
+
+Hints tag's class.
+
+### **messages**
+
+`default:`
+    
+      messages: {
+        required: "此项为必填项",
+        minLength: "此项要求最少%s个字符长度",
+        maxLength: "此项要求最多%s个字符长度",
+        phone: "手机格式错误",
+        email: "邮件格式错误",
+        number: "此项只能输入数字",
+        notAllNumber: "此项不能全为数字",
+        match: "与%s输入不一致"
+      }
+
+Error messages.
+
+### **errorCallback**
+
+`default: null`
+
+You can define a callback function which would be called when a field failed the validation. 
+
+**The function should have a paramter `field`, which is the field's DOM.**
+
+### **successCallback**
+
+`default: null`
+
+You can define a callback function which would be called when a field passed the validation.
+
+**The function should have a paramter `field`, which is the field's DOM.**
+
+### **focusCallback** 
+
+`default: null`
+
+You can define a callback function which would be called when a field got focused.
+
+**The function should have a paramter `field`, which is the field's DOM.**
+
+
+## Changelog
+
+## Todo
 
 
 ## License
