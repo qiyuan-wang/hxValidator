@@ -1,13 +1,13 @@
 var defaults = {
   messages: {
-    required: "此项为必填项",
-    minLength: "此项要求最少%s个字符长度",
-    maxLength: "此项要求最多%s个字符长度",
-    phone: "手机格式错误",
-    email: "邮件格式错误",
-    number: "此项只能输入数字",
-    notAllNumber: "此项不能全为数字",
-    match: "与%s输入不一致"
+    required: "This field is required",
+    minLength: "This field needs %s characters at least",
+    maxLength: "This field needs %s characters at most",
+    phone: "Not a valid phone number",
+    email: "Not a valid Email address",
+    number: "Number only",
+    notAllNumber: "Can't be all numbers",
+    match: "Does not match the %s field"
   },
   errorCallback: function(field) {
     var iconElement = field.hints.parentNode.getElementsByClassName("icon")[0];
@@ -243,16 +243,13 @@ hxValidator.prototype._checkMethods = {
 }
 
 hxValidator.prototype._focusField = function(field) {
-  var that = this;
-  return function() {
-    if(field.wrapper.className.indexOf('success') > 0) {return}
-    removeClasses(field.wrapper, 'error');
-    field.hints.style.display = "none";
-    field.errors.innerHTML = '';
-  
-    // if there is a callback, call it.
-    if(that.focusCallback) {that.focusCallback(field)};
-  }
+  if(field.wrapper.className.indexOf('success') > 0) {return}
+  removeClasses(field.wrapper, 'error');
+  field.hints.style.display = "block";
+  field.errors.innerHTML = '';
+
+  // if there is a callback, call it.
+  if(this.focusCallback) {this.focusCallback(field)};
 }
 
 hxValidator.prototype._addError = function(field, ruleName, rule) {
