@@ -41,8 +41,8 @@ var hxValidator = function(id, options) {
   // configuration
   this.form = document.querySelector(elementId);
   this.fields = {};
-  this.errorsClass = options['errorsClass'] || 'errors';
-  this.hintsClass = options['hintsClass'] || 'hints';
+  this.errorsClass = options['errorsClass'] || '.errors';
+  this.hintsClass = options['hintsClass'] || '.hints';
   this.wrapperClass = options['wrapperClass'] || 'hxValidator-field';
   this.messages = objectsMerge({}, defaults['messages'], options['messages']);
   this.errorCallback = options['errorCallback'] || defaults['errorCallback'];
@@ -65,6 +65,8 @@ var hxValidator = function(id, options) {
   }
   
   this.form.addEventListener("submit",this._validateForm.bind(this));
+  
+  this._hideAllHints();
   
   
   // helper methods
@@ -125,6 +127,14 @@ function addClasses(elem, addedClasses) {
     }
   }
 }
+
+hxValidator.prototype._hideAllHints = function() {
+  var hints = document.querySelectorAll(this.hintsClass);
+  [].slice.apply(hints).forEach(function(ele) {
+    ele.style.display = "none";
+  })
+}
+
 hxValidator.prototype._addField = function(elem) {
   // find all data-* attributes
   var rules = {},
@@ -142,8 +152,8 @@ hxValidator.prototype._addField = function(elem) {
     type: elem.attributes['type'].value,
     rules: rules,
     element: elem,
-    errors: elem.parentNode.getElementsByClassName(this.errorsClass)[0],
-    hints: elem.parentNode.getElementsByClassName(this.hintsClass)[0],
+    errors: elem.parentNode.querySelector(this.errorsClass),
+    hints: elem.parentNode.querySelector(this.hintsClass),
     wrapper: elem.parentNode,
     value: null,
     passed: null
