@@ -1,42 +1,76 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>HxValidator by qiyuan-wang</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>HxValidator</h1>
-        <p>A lightweight, easily scalable JavaScript form validation library</p>
-
-        <p class="view"><a href="https://github.com/qiyuan-wang/hxValidator">View the Project on GitHub <small>qiyuan-wang/hxValidator</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/qiyuan-wang/hxValidator/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/qiyuan-wang/hxValidator/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/qiyuan-wang/hxValidator">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <p>Just write the requirements on DOM data- attributes, <strong>hx-Validator</strong> would handle the validation stuff.</p>
-
-<p>And it's pure js.</p>
-
-<h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>HxValidator by qiyuan-wang</title>
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>hxValidator</h1>
+      <p>A lightweight, easily scalable JavaScript form validation library</p>
+      <p class="view"><a href="https://github.com/qiyuan-wang/hxValidator">View the Project on GitHub <small>qiyuan-wang/hxValidator</small></a></p>
+      <ul>
+        <li><a href="https://github.com/qiyuan-wang/hxValidator/zipball/master">Download <strong>ZIP File</strong></a></li>
+        <li><a href="https://github.com/qiyuan-wang/hxValidator/tarball/master">Download <strong>TAR Ball</strong></a></li>
+        <li><a href="https://github.com/qiyuan-wang/hxValidator">View On <strong>GitHub</strong></a></li>
+      </ul>
+    </header>
+    <section>
+      <p>Just write the requirements on DOM data- attributes, <strong>hx-Validator</strong> would handle the validation stuff.</p>
+      <p>And it's pure js.</p>
+      <form id="hxValidator">
+        <div class="hxValidator-field">
+          <label for="username"><i class="icon-gl2 icon-white-user" title="Username"></i></label>
+          <input name="username" type="text" data-max-length="10" data-required="true" data-min-length="3" id="username" value='' placeholder="Username" />
+          <span class='hints'>3 - 16 alphabet, numbers and underscores.</span>
+          <i class="icon-gl2 icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div class="hxValidator-field">
+          <label for="email"><i class="icon-gl2 icon-white-email" title="EMail"></i></label>
+          <input name="email" type="text" data-email="true" id="email" value='' placeholder="EMail" />
+          <span class='hints'></span>
+          <i class="icon-gl2 icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div class="hxValidator-field">
+          <label for="phone"><i class="icon-gl2 icon-white-phone" title="Phone"></i></label>
+          <input name="phone" type="text" data-phone="true" id="phone" value='' placeholder="Phone" />
+          <span class='hints'>11 digits.</span>
+          <i class="icon-gl2 icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div class="hxValidator-field">
+          <label for="password"><i class="icon-gl2 icon-white-unlock" title="密码"></i></label>
+          <input name="password" type="password" data-max-length="10" data-min-length="3" id="password" placeholder="密码" />
+          <span class='hints'></span>
+          <i class="icon-gl2 icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div class="hxValidator-field">
+          <label for="comfirm_password"><i class="icon-gl2 icon-white-lock" title="确认密码"></i></label>
+          <input name="comfirm_password" type="password" data-required="true" data-match="password|密码" id="comfirm_password" placeholder="确认密码" />
+          <span class='hints'></span>
+          <i class="icon-gl2 icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div>
+          <input name="submit" type="submit" value='提交' />
+        </div>
+      </form>
+      <h2>
+      <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
-<li>Pure javacript, no more libraries for dependency.</li>
+<li>Pure JavaScript, no more dependencies.</li>
 <li>Easy to use, only data- attributes and one line js.</li>
 <li>Easy to customize, you can change those classes names and styles * at your ease.</li>
 <li>Easy to extend, you can write your own validating function for special inputs easily.</li>

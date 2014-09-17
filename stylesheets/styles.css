@@ -218,6 +218,242 @@ footer {
   }
 }
 
+[class^="icon-"], [class*=" icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+
+.icon-gl2 {
+  background-image: url(../img/glyphicons-halflings2.png);
+}
+
+.icon-white-email {
+  background-position: -71px -186px;
+}
+
+.icon-white-unlock {
+  background-position: 0 -186px;
+}
+
+.icon-white-lock {
+  background-position: -24px -186px;
+}
+
+.icon-white-user {
+   background-position: -48px -186px;
+}
+
+.icon-white-phone {
+  background-position: -145px -186px;
+}
+
+.icon-white-cellphone {
+  background-position: -167px -186px;
+}
+
+.icon-error {
+  background-position: -121px -180px;
+}
+
+.icon-success {
+  background-position: -95px -180px;
+}
+
+
+.hxValidator-field {
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+
+.hxValidator-field label, .hxValidator-field input, .hxValidator-field span {
+  float: left;
+}
+
+
+.hxValidator-field label {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-right: 2px;
+  line-height: 30px;
+  background-color: #54B6E8;
+  font-size: 12px;
+  color: white;
+  text-align: center;
+  -webkit-transition: background-color linear .2s;
+  -moz-transition: background-color linear .2s;
+  -o-transition: background-color linear .2s;
+  transition: background-color linear .2s;
+}
+
+.hxValidator-field input {
+  width: 160px;
+  height: 30px;
+  line-height: 22px;
+  outline: 0;
+  padding: 2px 0 2px 10px;
+  margin-right: 2px;
+  border-radius: 0;
+  border: 1px solid #CCC;
+  font-size: 12px;
+  color: #66859E;
+  box-sizing: border-box;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear .2s,box-shadow linear .2s;
+  -moz-transition: border linear .2s,box-shadow linear .2s;
+  -o-transition: border linear .2s,box-shadow linear .2s;
+  transition: border linear .2s,box-shadow linear .2s;
+}
+
+.hxValidator-field .icon {
+  opacity: 0;
+  -webkit-transition: opacity linear .2s;
+  -moz-transition: opacity linear .2s;
+  -o-transition: opacity linear .2s;
+  transition: opacity linear .2s;
+}
+
+.hxValidator-field .icon-inset {
+  display: inline-block;
+  opacity: 1;
+  float: left;
+  margin-left: -24px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.hxValidator-field .error-txt {
+  display: inline-block;
+  opacity: 0;
+  -webkit-transition: opacity linear .2s;
+  -moz-transition: opacity linear .2s;
+  -o-transition: opacity linear .2s;
+  transition: opacity linear .2s;
+}
+
+.hxValidator-field .hint-txt {
+  display: inline-block;
+  font-size: 12px;
+  padding: 0 4px;
+  color: #999;
+}
+
+.hxValidator-field .hints {
+  display: inline-block;
+  font-size: 12px;
+  color: #999;
+  margin-left: 5px;
+}
+
+.hxValidator-field input:focus {
+  outline: 0;
+  border: 1px solid #54B6E8;
+  -webkit-box-shadow: inset 0px 0px 4px #54B6E8;
+  -moz-box-shadow: inset 0px 0px 4px #54B6E8;
+  box-shadow: inset 0px 0px 4px #54B6E8;
+  
+}
+
+.hxValidator-field input:focus .hint-txt {
+  color: #54B6E8;
+}
+
+.hxValidator-field.error .error-txt {
+  opacity: 1;
+  font-size: 12px;
+  padding: 0 10px;
+  background-color: #E32525;
+  color: #FFF;
+}
+
+.hxValidator-field.error label {
+  background-color: #E32525;
+}
+
+.hxValidator-field.error input {
+  color: #E32525;
+  border: 1px solid #E32525;
+  -webkit-box-shadow: inset 0px 0px 2px #E32525;
+  -moz-box-shadow: inset 0px 0px 2px #E32525;
+  box-shadow: inset 0px 0px 2px #E32525;
+}
+
+.hxValidator-field.error input:focus {
+  border: 1px solid #E32525;
+  outline: 0;
+  -webkit-box-shadow: inset 0px 0px 4px #E32525;
+  -moz-box-shadow: inset 0px 0px 4px #E32525;
+  box-shadow: inset 0px 0px 4px #E32525;
+}
+
+.hxValidator-field.success label {
+  background-color: #33C162;
+}
+
+.hxValidator-field.success input:focus {
+  border: 1px solid #33C162;
+  outline: 0;
+  -webkit-box-shadow: inset 0px 0px 4px #33C162;
+  -moz-box-shadow: inset 0px 0px 4px #33C162;
+  box-shadow: inset 0px 0px 4px #33C162;
+}
+
+/* for placeholder font color*/
+
+.hxValidator-field input:focus::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #54B6E8;
+}
+.hxValidator-field input:focus:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #54B6E8;
+    opacity:  1;
+}
+.hxValidator-field input:focus::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #54B6E8;
+    opacity:  1;
+}
+.hxValidator-field input:focus:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #54B6E8;
+}
+
+.hxValidator-field.error input::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #E32525;
+}
+.hxValidator-field.error input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #E32525;
+    opacity:  1;
+}
+.hxValidator-field.error input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #E32525;
+    opacity:  1;
+}
+.hxValidator-field.error input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #E32525;
+}
+
+.hxValidator-field.success input:focus::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #33C162;
+}
+.hxValidator-field.success input:focus:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #33C162;
+    opacity:  1;
+}
+.hxValidator-field.success input:focus::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #33C162;
+    opacity:  1;
+}
+.hxValidator-field.success input:focus:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #33C162;
+}
+
 @media print, screen and (max-width: 720px) {
   body {
     word-wrap:break-word;
