@@ -35,11 +35,11 @@ var dataAttrRegex = /^data(?:-[a-z]+)+$/gi,
 var hxValidator = function(id, options) {
   
   // deal with parameters
-  var elementId = id || 'hxValidator';
+  var elementId = id || '#hxValidator';
   var options = options || {};
   
   // configuration
-  this.form = document.getElementById(elementId);
+  this.form = document.querySelector(elementId);
   this.fields = {};
   this.errorsClass = options['errorsClass'] || 'errors';
   this.hintsClass = options['hintsClass'] || 'hints';
