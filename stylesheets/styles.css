@@ -183,87 +183,42 @@ footer {
   bottom:50px;
 }
 
-@media print, screen and (max-width: 960px) {
-  
-  div.wrapper {
-    width:auto;
-    margin:0;
-  }
-  
-  header, section, footer {
-    float:none;
-    position:static;
-    width:auto;
-  }
-  
-  header {
-    padding-right:320px;
-  }
-  
-  section {
-    border:1px solid #e5e5e5;
-    border-width:1px 0;
-    padding:20px 0;
-    margin:0 0 20px;
-  }
-  
-  header a small {
-    display:inline;
-  }
-  
-  header ul {
-    position:absolute;
-    right:50px;
-    top:52px;
-  }
+#hxValidator {
+  margin: 20px 0;
 }
 
-[class^="icon-"], [class*=" icon-"] {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  margin-top: 1px;
-  line-height: 14px;
-  vertical-align: text-top;
-  background-position: 14px 14px;
-  background-repeat: no-repeat;
-}
-
-.icon-gl2 {
-  background-image: url(../img/glyphicons-halflings2.png);
+.form-icons {
+  background: url('../images/form-icons.png') no-repeat;
 }
 
 .icon-white-email {
-  background-position: -71px -186px;
+  background-position: 0px 0px;
 }
 
 .icon-white-unlock {
-  background-position: 0 -186px;
+  background-position: 0 -40px;
 }
 
 .icon-white-lock {
-  background-position: -24px -186px;
+  background-position: 0px -60px;
 }
 
 .icon-white-user {
-   background-position: -48px -186px;
+   background-position: 0px -20px;
 }
 
-.icon-white-phone {
-  background-position: -145px -186px;
-}
-
-.icon-white-cellphone {
-  background-position: -167px -186px;
+.icon-white-captcha {
+  background-position: 0px -80px;
 }
 
 .icon-error {
-  background-position: -121px -180px;
+  background-position: 0px -120px;
 }
 
 .icon-success {
-  background-position: -95px -180px;
+  background-position: 0px -100px;
 }
+
 
 
 .hxValidator-field {
@@ -276,9 +231,9 @@ footer {
   float: left;
 }
 
-
 .hxValidator-field label {
   display: inline-block;
+  position: relative;
   width: 30px;
   height: 30px;
   margin-right: 2px;
@@ -294,9 +249,10 @@ footer {
 }
 
 .hxValidator-field input {
-  width: 160px;
+  width: 230px;
   height: 30px;
-  line-height: 22px;
+  line-height: 16px;
+  line-height: 22px\9; /* for ie7,8 */
   outline: 0;
   padding: 2px 0 2px 10px;
   margin-right: 2px;
@@ -316,18 +272,32 @@ footer {
 
 .hxValidator-field .icon {
   opacity: 0;
+  width: 16px;
+  height: 16px;
   -webkit-transition: opacity linear .2s;
   -moz-transition: opacity linear .2s;
   -o-transition: opacity linear .2s;
   transition: opacity linear .2s;
 }
 
+.hxValidator-field .label-icon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-top: -8px;
+  margin-left: -8px;
+  vertical-align: text-top;
+}
+
 .hxValidator-field .icon-inset {
   display: inline-block;
+  position: relative;
   opacity: 1;
   float: left;
   margin-left: -24px;
-  height: 30px;
+  margin-top: 7px;
   vertical-align: middle;
 }
 
@@ -340,15 +310,8 @@ footer {
   transition: opacity linear .2s;
 }
 
-.hxValidator-field .hint-txt {
-  display: inline-block;
-  font-size: 12px;
-  padding: 0 4px;
-  color: #999;
-}
-
 .hxValidator-field .hints {
-  display: inline-block;
+  display: none;
   font-size: 12px;
   color: #999;
   margin-left: 5px;
@@ -452,6 +415,52 @@ footer {
 }
 .hxValidator-field.success input:focus:-ms-input-placeholder { /* Internet Explorer 10+ */
     color:    #33C162;
+}
+
+button[type="submit"] {
+  width: 100px;
+  height: 28px;
+  font-size: 12px;
+  background-color: #54B6E8;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+
+
+@media print, screen and (max-width: 960px) {
+  
+  div.wrapper {
+    width:auto;
+    margin:0;
+  }
+  
+  header, section, footer {
+    float:none;
+    position:static;
+    width:auto;
+  }
+  
+  header {
+    padding-right:320px;
+  }
+  
+  section {
+    border:1px solid #e5e5e5;
+    border-width:1px 0;
+    padding:20px 0;
+    margin:0 0 20px;
+  }
+  
+  header a small {
+    display:inline;
+  }
+  
+  header ul {
+    position:absolute;
+    right:50px;
+    top:52px;
+  }
 }
 
 @media print, screen and (max-width: 720px) {
