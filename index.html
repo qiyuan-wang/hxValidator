@@ -1,1 +1,276 @@
-hxValidator
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Hxvalidator by qiyuan-wang</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Hxvalidator</h1>
+          <h2>Easy to use and easy to scale.</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/qiyuan-wang/hxValidator/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/qiyuan-wang/hxValidator/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/qiyuan-wang/hxValidator" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a name="hx-validatorjs" class="anchor" href="#hx-validatorjs"><span class="octicon octicon-link"></span></a>hx-validator.js</h1>
+
+<p>Just write the requirements on DOM data- attributes, <strong>hx-Validator</strong> would handle the validation stuff.</p>
+
+<p>And it's pure js.</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Pure javacript, no more libraries for dependency.</li>
+<li>Easy to use, only data- attributes and one line js.</li>
+<li>Easy to customize, you can change those classes names and styles * at your ease.</li>
+<li>Easy to extend, you can write your own validating function for special inputs easily.</li>
+<li>
+<p>Supports validating inputs value with:</p>
+
+<ul>
+<li>required</li>
+<li>max-length</li>
+<li>min-length</li>
+<li>phone format</li>
+<li>email format</li>
+<li>not-all-number format</li>
+<li>matching another input value(password confirmation, for example)</li>
+<li><strong>your own validating format</strong></li>
+</ul>
+</li>
+<li><p>Current version only supports text or password type of inputs, and will support checkbox in next few versions.</p></li>
+</ul><h3>
+<a name="browser-compatibility" class="anchor" href="#browser-compatibility"><span class="octicon octicon-link"></span></a>Browser Compatibility</h3>
+
+<p>Tested in the following browsers/versions:</p>
+
+<ul>
+<li>Google Chrome 27+</li>
+<li>Internet Explorer 9.0+ (Sorry, IE8)</li>
+<li>Firefox 30+</li>
+<li>Safari 5.1+</li>
+</ul><p>Don't have much time and conditions on Compatibility test, and let me know if you got any information about this.</p>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<h3>
+<a name="quick-start" class="anchor" href="#quick-start"><span class="octicon octicon-link"></span></a>Quick Start</h3>
+
+<p>So, let's write a register form for your brand-new, coolest website.</p>
+
+<p>First, insert hx-Validator in your HTML:</p>
+
+<pre><code>&lt;script type="text/javascript" src="/your/path/to/hx-validator.js"&gt;&lt;/scirpt&gt;
+&lt;!---- and you could wrap hxValidator default css in --&gt;
+&lt;link rel="stylesheet" href="/your/path/to/hxValidator/style.css"&gt;&lt;/link&gt;
+</code></pre>
+
+<p>Okay, a account need a username, a password and a confirmation for the password. We would give them some requirements: <strong>min-length</strong>, <strong>max-length</strong>, <strong>required</strong>, and <strong>confirmation must equal</strong> blah blah.</p>
+
+<pre><code>&lt;form id="hxValidator"&gt;
+  &lt;fieldset&gt;
+    &lt;div class="hxValidator-field"&gt;
+      &lt;input name="username" type="text" data-required="true" data-min-length="3" data-max-length="8" value='' placeholder="Username" /&gt;
+      &lt;span class="errors error-txt"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="hxValidator-field"&gt;
+      &lt;input name="password" type="password" data-required="true" data-min-length="6" data-max-length="10"  placeholder="Password" /&gt;
+      &lt;span class="errors error-txt"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="hxValidator-field"&gt;
+      &lt;input name="comfirm_password" type="password" data-required="true" data-match="password|" placeholder="Confirmation" /&gt;
+      &lt;span class="errors error-txt"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;input name="submit" type="submit" value='Submit' /&gt;
+    &lt;/div&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>What have we done? We just:</p>
+
+<ol>
+<li><strong>wrap every inputs in a div with class "hxValidator-field"</strong></li>
+<li><strong>insert a "error-txt" span tag</strong></li>
+<li>
+<strong>write all requirements in data- attributes</strong>.</li>
+</ol><p>Does it work? Give it a try. Tell hxValidator which form you want to validate by Id:</p>
+
+<pre><code>&lt;script&gt; var formValidate = new hxValidator('hxValidator'); &lt;/script&gt;
+</code></pre>
+
+<p>(<a href="http://">You can try this little demo here.</a>)  </p>
+
+<p>So, I'll reveal the result: It works! An error message would be inserted into the "error-txt" span tag if your inputs doesn't meet the requirements of the field.</p>
+
+<h3>
+<a name="an-advanced-example" class="anchor" href="#an-advanced-example"><span class="octicon octicon-link"></span></a>An advanced example</h3>
+
+<p>Previous example maybe too simple, right? Let's have a complicated one!</p>
+
+<p>You may need a label for the field, a hint to explain the requirements, and icons to indicate whether pass or fail.</p>
+
+<p>The snippet of code below shows a field meets all those needs:</p>
+
+<pre><code> &lt;div class="hxValidator-field"&gt;
+   &lt;label for="username"&gt;&lt;i class="icon-gl2 icon-white-user" title="Username"&gt;&lt;/i&gt;&lt;/label&gt;
+   &lt;input name="username" type="text" data-min-length="3" data-max-length="10" data-required="true" data-username-unique-remote="true"  value='' placeholder="Username" /&gt;
+   &lt;span class='hints'&gt;3-10 characters, numbers and underscores.&lt;/span&gt;
+   &lt;i class="icon-gl2 icon"&gt;&lt;/i&gt;
+   &lt;span class="errors error-txt"&gt;&lt;/span&gt;
+ &lt;/div&gt;
+</code></pre>
+
+<p>You would notice there is a bizzare requirement, <code>data-username-unique-remote</code>. Yeah, it is a custom validating format. And it checks whether the username you inputs has registered yet. Following code shows the secret:</p>
+
+<pre><code>&lt;script&gt;
+  function remoteCheckFunc(field) {
+    // check username uniqueness
+    // with backend server
+    ...
+  }
+
+  var options = {
+    messages: {
+      usernameUniqueRemote: "The username is unavailiable."
+    },
+    customCheckMethods: {
+      usernameUniqueRemote: remoteCheckFunc
+    }
+  }
+
+  var formValidate = new hxValidator('hxValidator', options);
+&lt;/script&gt;
+</code></pre>
+
+<p>The custom validating format needs an error message and a check function. <code>options</code> gives all the information.</p>
+
+<p>That'all, no magic.</p>
+
+<p>(<a href="http://">You can try this more complicated demo here.</a>)  </p>
+
+<h2>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<p>All those below you can customize.</p>
+
+<h3>
+<a name="wrapperclass" class="anchor" href="#wrapperclass"><span class="octicon octicon-link"></span></a><strong>wrapperClass</strong>
+</h3>
+
+<p><code>default: "hxValidator-field"</code></p>
+
+<p>Wrapper tag's class.</p>
+
+<h3>
+<a name="errorsclass" class="anchor" href="#errorsclass"><span class="octicon octicon-link"></span></a><strong>errorsClass</strong>
+</h3>
+
+<p><code>default: "errors"</code></p>
+
+<p>Errors tag's class.</p>
+
+<h3>
+<a name="hintsclass" class="anchor" href="#hintsclass"><span class="octicon octicon-link"></span></a><strong>hintsClass</strong>
+</h3>
+
+<p><code>default: "errors"</code></p>
+
+<p>Hints tag's class.</p>
+
+<h3>
+<a name="messages" class="anchor" href="#messages"><span class="octicon octicon-link"></span></a><strong>messages</strong>
+</h3>
+
+<p><code>default:</code></p>
+
+<pre><code>  messages: {
+    required: "此项为必填项",
+    minLength: "此项要求最少%s个字符长度",
+    maxLength: "此项要求最多%s个字符长度",
+    phone: "手机格式错误",
+    email: "邮件格式错误",
+    number: "此项只能输入数字",
+    notAllNumber: "此项不能全为数字",
+    match: "与%s输入不一致"
+  }
+</code></pre>
+
+<p>Error messages.</p>
+
+<h3>
+<a name="errorcallback" class="anchor" href="#errorcallback"><span class="octicon octicon-link"></span></a><strong>errorCallback</strong>
+</h3>
+
+<p><code>default: null</code></p>
+
+<p>You can define a callback function which would be called when a field failed the validation. </p>
+
+<p><strong>The function should have a paramter <code>field</code>, which is the field's DOM.</strong></p>
+
+<h3>
+<a name="successcallback" class="anchor" href="#successcallback"><span class="octicon octicon-link"></span></a><strong>successCallback</strong>
+</h3>
+
+<p><code>default: null</code></p>
+
+<p>You can define a callback function which would be called when a field passed the validation.</p>
+
+<p><strong>The function should have a paramter <code>field</code>, which is the field's DOM.</strong></p>
+
+<h3>
+<a name="focuscallback" class="anchor" href="#focuscallback"><span class="octicon octicon-link"></span></a><strong>focusCallback</strong>
+</h3>
+
+<p><code>default: null</code></p>
+
+<p>You can define a callback function which would be called when a field got focused.</p>
+
+<p><strong>The function should have a paramter <code>field</code>, which is the field's DOM.</strong></p>
+
+<h2>
+<a name="changelog" class="anchor" href="#changelog"><span class="octicon octicon-link"></span></a>Changelog</h2>
+
+<h2>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>Todo</h2>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright (c) 2014 zisasign. Licensed under the MIT license.</p>
+        </section>
+
+        <footer>
+          Hxvalidator is maintained by <a href="https://github.com/qiyuan-wang">qiyuan-wang</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
