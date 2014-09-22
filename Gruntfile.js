@@ -23,15 +23,15 @@ module.exports = function (grunt) {
       },
       jquery: {
         src: ['common/header.js' ,'src/<%= pkg.name %>.js', 'common/footer.js'],
-        dest: 'dist/<%= pkg.name %>_jquery.js',
+        dest: 'dist/<%= pkg.name %>.<%= pkg.version %>.jquery.js',
       },
       seajs: {
         src: ['seajs/header.js' ,'src/<%= pkg.name %>.js', 'seajs/footer.js'],
-        dest: 'dist/<%= pkg.name %>.js',
+        dest: 'dist/<%= pkg.name %>.<%= pkg.version %>.seajs.js',
       },
       pure: {
         src: ['pure/header.js' ,'src/<%= pkg.name %>_pure.js', 'pure/footer.js'],
-        dest: 'dist/<%= pkg.name %>_pure.js',
+        dest: 'dist/<%= pkg.name %>.<%= pkg.version %>.js',
       }
     },
     uglify: {
@@ -40,15 +40,15 @@ module.exports = function (grunt) {
       },
       jquery: {
         src: "<%= concat.jquery.dest %>",
-        dest: "dist/<%= pkg.name %>_jquery_min.js"
+        dest: "dist/<%= pkg.name %>.<%= pkg.version %>.jquery.min.js"
       },
       seajs: {
         src: "<%= concat.seajs.dest %>",
-        dest: "dist/<%= pkg.name %>_seajs_min.js"
+        dest: "dist/<%= pkg.name %>.<%= pkg.version %>.seajs.min.js"
       },
       pure: {
         src: "<%= concat.pure.dest %>",
-        dest: "dist/<%= pkg.name %>_pure_min.js"
+        dest: "dist/<%= pkg.name %>.<%= pkg.version %>.min.js"
       },
     },
     clean: {
