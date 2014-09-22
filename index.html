@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/stylesheet.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -24,7 +25,6 @@
         <ul>
           <li><a href="https://github.com/qiyuan-wang/hxValidator/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/qiyuan-wang/hxValidator/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/qiyuan-wang/hxValidator">View On <strong>GitHub</strong></a></li>
         </ul>
       </header>
       <section>
@@ -34,6 +34,42 @@
 <p>Just write the requirements on DOM data- attributes, <strong>hx-Validator</strong> would handle the validation stuff.</p>
 
 <p>And it's pure JS.</p>
+
+<h2>
+      <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h2>
+      <form id="hxValidator">
+        <div class="hxValidator-field">
+          <label for="username"><i class="form-icons label-icon icon-white-user" title="Username"></i></label>
+          <input name="username" type="text" data-max-length="10" data-required="true" data-min-length="3" id="username" value='' placeholder="Username" />
+          <span class='hints'>3 - 10 alphabet, numbers and underscores.</span>
+          <i class="form-icons icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div class="hxValidator-field">
+          <label for="email"><i class="form-icons label-icon icon-white-email"  title="Email"></i></label>
+          <input name="email" type="text" data-email="true" id="email" value='' placeholder="Email" />
+          <span class='hints'></span>
+          <i class="form-icons icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div class="hxValidator-field">
+          <label for="password"><i class="form-icons label-icon icon-white-unlock" title="Password"></i></label>
+          <input name="password" type="password" data-max-length="10" data-min-length="3" id="password" placeholder="Password" />
+          <span class='hints'></span>
+          <i class="form-icons icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div class="hxValidator-field">
+          <label for="comfirm_password"><i class="form-icons label-icon  icon-white-lock" title="Password_confirm"></i></label>
+          <input name="comfirm_password" type="password" data-required="true" data-match="password|" id="comfirm_password" placeholder="Password Confirm" />
+          <span class='hints'></span>
+          <i class="form-icons icon"></i>
+          <span class="errors error-txt"></span>
+        </div>
+        <div>
+          <button name="submit" type="submit">GO!</button>
+        </div>
+      </form>
 
 <h2>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
@@ -84,7 +120,7 @@
 <li>An errors tags, leave it empty, error messages would be written in options.</li>
 </ol><p>That's all. </p>
 
-<p>And you can add other tags you like, like this <a href="http://qiyuan-wang.github.io/hxValidator/">example</a>.</p>
+<p>And you can add other tags you like, like this <a href="#demo">example</a>.</p>
 
 <h3>
 <a name="support-validate-requirements" class="anchor" href="#support-validate-requirements"><span class="octicon octicon-link"></span></a>Support validate requirements:</h3>
@@ -327,10 +363,13 @@ Current version only supports text or password type of inputs, and will support 
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/qiyuan-wang">qiyuan-wang</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small> and small modified by <a href="https://github.com/qiyuan-wang">qiyuan-wang</a></p>
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+        <script src="javascripts/hxValidator.0.1.0.min.js"></script>
+        <script>
+          new hxValidator('#hxValidator');
+        </script>
   </body>
 </html>
