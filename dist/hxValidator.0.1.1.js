@@ -1,11 +1,10 @@
 /*! hxValidator 
-* v0.1.0 
+* v0.1.1 
 * 2014-09-22
 *  http://www.huxiu.com
 * Copyright (c) 2014 zisasign; Licensed MIT */
 
 
-(function() {
 var defaults = {
   messages: {
     required: "This field is required",
@@ -298,26 +297,3 @@ hxValidator.prototype._addSuccess = function(field) {
   // if there is a callback, call it.
   if(this.successCallback) {this.successCallback(field)};
 }
-if (typeof define === 'function' && define.amd) {
-    define(function() {
-      return {
-        hxValidator: hxValidator
-      };
-    });
-  }
-
-  /**
-   * Add support for CommonJS libraries such as browserify.
-   */
-  if (typeof exports !== 'undefined') {
-    exports.hxValidator = hxValidator;
-
-  }
-
-  // define globally in case AMD is not available or available but not used
-
-  if (typeof window !== 'undefined') {
-    window.hxValidator = hxValidator;
-  }
-
-})();

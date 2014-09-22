@@ -1,22 +1,20 @@
 /*! hxValidator 
-* v0.1.0 
+* v0.1.1 
 * 2014-09-22
 *  http://www.huxiu.com
 * Copyright (c) 2014 zisasign; Licensed MIT */
 
 
-define('hxValidator/hxValidator', ['jquery'], function(require, exports, module){
-  var $ = require('jquery');
 var defaults = {
   messages: {
-    required: "此项为必填项",
-    minLength: "此项要求最少%s个字符长度",
-    maxLength: "此项要求最多%s个字符长度",
-    phone: "手机格式错误",
-    email: "邮件格式错误",
-    number: "此项只能输入数字",
-    notAllNumber: "此项不能全为数字",
-    match: "与%s输入不一致"
+    required: "This field is required",
+    minLength: "This field needs %s characters at least",
+    maxLength: "This field needs %s characters at most",
+    phone: "Not a valid phone number",
+    email: "Not a valid Email address",
+    number: "Number only",
+    notAllNumber: "Can't be all numbers",
+    match: "Does not match the %s field"
   },
   errorCallback: function(field) {
     field.element.siblings('.icon').removeClass('icon-success').addClass('icon-error icon-inset');
@@ -206,5 +204,3 @@ hxValidator.prototype._checkMethods = {
     return true;
   }
 }
-  module.exports = hxValidator;
-})
