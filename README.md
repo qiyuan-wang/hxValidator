@@ -2,27 +2,16 @@
 
 Just write the requirements on DOM data- attributes, **hx-Validator** would handle the validation stuff.
 
-And it's pure js.
+And it's pure JS.
 
 ## Features
 
 * Pure javacript, no more libraries for dependency.
 * Easy to use, only data- attributes and one line js.
-* Easy to customize, you can change those classes names and styles * at your ease.
+* Easy to customize, you can change those classes names and styles at your ease.
 * Easy to extend, you can write your own validating function for special inputs easily.
-* Supports validating inputs value with:
-    - required
-    - max-length
-    - min-length
-    - phone format
-    - email format
-    - not-all-number format
-    - matching another input value(password confirmation, for example)
-    - **your own validating format**
-    
-* Current version only supports text or password type of inputs, and will support checkbox in next few versions.
 
-### Browser Compatibility
+## Browser Compatibility
 
 Tested in the following browsers/versions:
 
@@ -36,137 +25,194 @@ Don't have much time and conditions on Compatibility test, and let me know if yo
 
 ## Documentation
 
-### Quick Start
+### Markup
 
-So, let's write a register form for your brand-new, coolest website.
-
-First, insert hx-Validator in your HTML:
-
+    <!---- embed hxValidator -->
     <script type="text/javascript" src="/your/path/to/hx-validator.js"></scirpt>
-    <!---- and you could wrap hxValidator default css in -->
-    <link rel="stylesheet" href="/your/path/to/hxValidator/style.css"></link>
-
-Okay, a account need a username, a password and a confirmation for the password. We would give them some requirements: **min-length**, **max-length**, **required**, and **confirmation must equal** blah blah.
-
+    
     <form id="hxValidator">
-      <fieldset>
-        <div class="hxValidator-field">
-          <input name="username" type="text" data-required="true" data-min-length="3" data-max-length="8" value='' placeholder="Username" />
-          <span class="errors error-txt"></span>
-        </div>
-        <div class="hxValidator-field">
-          <input name="password" type="password" data-required="true" data-min-length="6" data-max-length="10"  placeholder="Password" />
-          <span class="errors error-txt"></span>
-        </div>
-        <div class="hxValidator-field">
-          <input name="comfirm_password" type="password" data-required="true" data-match="password|" placeholder="Confirmation" />
-          <span class="errors error-txt"></span>
-        </div>
-        <div>
-          <input name="submit" type="submit" value='Submit' />
-        </div>
-      </fieldset>
+      <!---- a input field wrap -->
+      <div class="hxValidator-field">
+        <input name="username" type="text" value='' placeholder="Username" data-your-requirements /><!---- write requirements here -->
+        <span class='hints'>write hints text here </span>
+        <span class="errors error-txt"></span><!---- erorr messages tag, leave it empty -->
+      </div>
+      <input name="submit" type="submit" value='Submit' />
     </form>
 
-What have we done? We just:
-
-1. **wrap every inputs in a div with class "hxValidator-field"**
-2. **insert a "error-txt" span tag**
-3. **write all requirements in data- attributes**.
-
-Does it work? Give it a try. Tell hxValidator which form you want to validate by Id:
-
-    <script> var formValidate = new hxValidator('hxValidator'); </script>
-
-([You can try this little demo here.][demo1])  
+Basicly, an input field should have those things below:
 
 
-So, I'll reveal the result: It works! An error message would be inserted into the "error-txt" span tag if your inputs doesn't meet the requirements of the field.
+1. A div tag with '.hxvalidator-field';
+2. An input tag, with data- attibutes of requirements;
+3. An hints tag, and your hints for the field, you can leave it empty;
+4. An errors tags, leave it empty, error messages would be written in options.
 
-### An advanced example
+That's all. 
 
-Previous example maybe too simple, right? Let's have a complicated one!
+And you can add other tags you like, like this [example] [demo].
 
-You may need a label for the field, a hint to explain the requirements, and icons to indicate whether pass or fail.
+### Support validate requirements:
 
-The snippet of code below shows a field meets all those needs:
+#### required
 
-     <div class="hxValidator-field">
-       <label for="username"><i class="icon-gl2 icon-white-user" title="Username"></i></label>
-       <input name="username" type="text" data-min-length="3" data-max-length="10" data-required="true" data-username-unique-remote="true"  value='' placeholder="Username" />
-       <span class='hints'>3-10 characters, numbers and underscores.</span>
-       <i class="icon-gl2 icon"></i>
-       <span class="errors error-txt"></span>
-     </div>
+format: `data-required="true"`
 
-You would notice there is a bizzare requirement, `data-username-unique-remote`. Yeah, it is a custom validating format. And it checks whether the username you inputs has registered yet. Following code shows the secret:
+error message: `This field is required`
 
-    <script>
-      function remoteCheckFunc(field) {
-        // check username uniqueness
-        // with backend server
-        ...
-      }
-      
-      var options = {
-        messages: {
-          usernameUniqueRemote: "The username is unavailiable."
-        },
+#### min-length
+
+format: `data-min-length="{number required}"`
+
+error message: `This field needs %s characters at least`
+
+The `%s` would be replace with the `number required` you set when the error message shows.
+
+#### max-length
+
+format: `data-max-length="{number required}"`
+
+error message: `This field needs %s characters at most`
+
+The `%s` would be replace with the `number required` you set when the error message shows.
+
+#### phone
+
+format: `data-phone="true"`
+
+error message: `Not a valid phone number`
+
+You should change the `phoneRegex` for your local phone format from src. The default is Chinese phone format.
+
+#### number
+
+format: `data-number="true"`
+
+error message: `Numbers only`
+
+#### not all number
+
+format: `data-not-all-number="true"`
+
+error message: `Can't be all numbers`
+
+#### match
+
+format: `data-match="{name attribute}|"`
+
+error message: `Does not match the %s field`
+
+The `%s` would be replace with the target input field `name attribute` you set when the error message shows.
+
+And the last `|` is required and you could add a `alias` for the target field after the `|`.
+
+This validation is useful as password confirmation. For example,
+
+    <div class="hxValidator-field">
+      <input name="password" type="password" data-max-length="12" data-min-length="6" id="password" />
+      <span class='hints'></span>
+      <span class="errors error-txt"></span>
+    </div>
+    <div class="hxValidator-field">
+      <input name="comfirm_password" type="password" data-match="password|密码" id="comfirm_password" />
+      <span class='hints'></span>
+      <span class="errors error-txt"></span>
+    </div>
+
+#### custom validation
+
+You can easily extend hxValidator to a special requirment on your own.
+
+You have to supply 3 elements:
+
+1. A name for the validation；
+2. A validate function with a 'field' parameter, and a option parameter for data- attribute's value;
+3. A error message for this validation;
+
+The validaton name should follow **lowerCamelCase format in JS**, and **lowercased joint with '-' in HTML**.
+
+The `field` is the field's DOM and you can get the value of user inputs by calling `field.value`.
+
+And the validate function should return `true` when the value meets the  requirement, `false` for failed.
+
+That' all. Wrap those into the `options` passed to hxValidator.
+
+Let's see a example:
+    
+    // You can not use those names as username
+    var forbiddenNames = "admin Daisy" // Yeah, I don't like Daisy!
+    
+    // optional is the value of the data- attribute
+    var forbiddenNameValidate = function (field, optional) {
+        var inputValue = field.value;
+        return (forbiddenNames.indexOf(inputValue) < 0);
+    }
+    
+    var options = {
+        messages: {forbiddenUsername: "This username is not allowed"},
         customCheckMethods: {
-          usernameUniqueRemote: remoteCheckFunc
+            forbiddenUsername: forbiddenNameValidate
         }
-      }
+    }
     
-      var formValidate = new hxValidator('hxValidator', options);
-    </script>
+    // init the validator
+    new hxValidator("#register_form", options);
     
-The custom validating format needs an error message and a check function. `options` gives all the information.
+    // HTML
+    <div class="hxValidator-field">
+      <input name="username" type="text" data-forbidden-username="true" id="username" />
+      <span class='hints'></span>
+      <span class="errors error-txt"></span>
+    </div>
 
-That'all, no magic.
+This gives you flexibility at most. You could even write **Remote check** with your backend server for some special field.
 
-([You can try this more complicated demo here.][demo2])  
+Check [this example][demo2] Which check the uniqueness of username, email, and even a validation code. 
+
+**P.S.:**    
+Current version only supports text or password type of inputs, and will support checkbox in next few versions.
 
 
-## Options
+### Options
 
 All those below you can customize.
 
-### **wrapperClass**
+#### wrapperClass
 
-`default: "hxValidator-field"`
+`default: ".hxValidator-field"`
 
 Wrapper tag's class.
 
-### **errorsClass**
+#### **errorsClass**
 
-`default: "errors"`
+`default: ".errors"`
 
 Errors tag's class.
 
-### **hintsClass**
+#### **hintsClass**
 
-`default: "errors"`
+`default: ".hints"`
 
 Hints tag's class.
 
-### **messages**
+#### **messages**
 
 `default:`
     
       messages: {
-        required: "此项为必填项",
-        minLength: "此项要求最少%s个字符长度",
-        maxLength: "此项要求最多%s个字符长度",
-        phone: "手机格式错误",
-        email: "邮件格式错误",
-        number: "此项只能输入数字",
-        notAllNumber: "此项不能全为数字",
-        match: "与%s输入不一致"
+        required: "This field is required",
+        minLength: "This field needs %s characters at least",
+        maxLength: "This field needs %s characters at most",
+        phone: "Not a valid phone number",
+        email: "Not a valid Email address",
+        number: "Numbers only",
+        notAllNumber: "Can't be all numbers",
+        match: "Does not match the %s field"
       }
 
 Error messages.
 
-### **errorCallback**
+#### **errorCallback**
 
 `default: null`
 
@@ -174,7 +220,7 @@ You can define a callback function which would be called when a field failed the
 
 **The function should have a paramter `field`, which is the field's DOM.**
 
-### **successCallback**
+#### **successCallback**
 
 `default: null`
 
@@ -182,7 +228,7 @@ You can define a callback function which would be called when a field passed the
 
 **The function should have a paramter `field`, which is the field's DOM.**
 
-### **focusCallback** 
+#### **focusCallback** 
 
 `default: null`
 
@@ -190,15 +236,33 @@ You can define a callback function which would be called when a field got focuse
 
 **The function should have a paramter `field`, which is the field's DOM.**
 
+Check [this example][demo2] Which use all thoese callbacks for styling with pass/failed icons. 
+
 
 ## Changelog
 
+- 0.1.0 release
+- 0.0.10 add readme
+- 0.0.9 rewrite with pure js
+- 0.0.5 delay Remote validation check
+- 0.0.2 add examples.html
+
 ## Todo
+
+- add supports for checkbox and select
+- add localization
+- reorganize structure of options 
+
+## One more thing
+
+hxValidator.js was written in jQuery at first, but then rewrote in pure JS.
+
+I kept the jQuery version file in the dist folder(but won't keep maintenance), use at your ease.
 
 
 ## License
  
  Copyright (c) 2014 zisasign. Licensed under the MIT license.
  
- [demo1]: http://
- [demo2]: http://
+ [demo]: http://qiyuan-wang.github.io/hxValidator/
+ [demo2]: http://www.huxiu.com/user/register.html
