@@ -6,7 +6,7 @@ And it's pure JS.
 
 ## Features
 
-* Pure javacript, no more libraries for dependency.
+* Pure javascript, no more libraries for dependency.
 * Easy to use, only data- attributes and one line js.
 * Easy to customize, you can change those classes names and styles at your ease.
 * Easy to extend, you can write your own validating function for special inputs easily.
