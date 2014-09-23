@@ -1,6 +1,6 @@
 {
   "name": "hxValidator",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A lightweight, easily scalable JavaScript form validation library",
   "keywords": [
     "Javascript validator", "JS", "form"
