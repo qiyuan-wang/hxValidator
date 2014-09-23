@@ -1,29 +1,21 @@
 {
   "name": "hx-validator",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "authors": [
-    "zephyrisalive <zephyrisalive@gmail.com>"
+    "qiyuan-wang <zephyrisalive@gmail.com>"
   ],
-  "description": "Form validator that huxiu.com used.",
-  "moduleType": [
-    "globals"
-  ],
+  "description": "A lightweight, easily scalable JavaScript form validation library",
   "keywords": [
-    "jquery",
     "form",
     "validate"
   ],
   "license": "MIT",
-  "homepage": "www.huxiu.com",
-  "private": true,
+  "homepage": "qiyuan-wang.github.io/hxValidator",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "jquery": "1.9.1"
-  }
+  ]
 }

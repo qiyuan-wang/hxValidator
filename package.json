@@ -1,6 +1,7 @@
 {
   "name": "hxValidator",
   "version": "0.1.2",
+  "main": ["/dist/hxValidator.0.1.2.min.js", "/css/style.css"],
   "description": "A lightweight, easily scalable JavaScript form validation library",
   "keywords": [
     "Javascript validator", "JS", "form"
