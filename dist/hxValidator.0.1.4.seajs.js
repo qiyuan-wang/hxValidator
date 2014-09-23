@@ -1,5 +1,5 @@
 /*! hxValidator 
-* v0.1.2 
+* v0.1.4 
 * 2014-09-23
 *  http://www.huxiu.com
 * Copyright (c) 2014 zisasign; Licensed MIT */
