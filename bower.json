@@ -1,5 +1,5 @@
 {
-  "name": "hxValidator",
+  "name": "hx-validator",
   "version": "0.1.6",
   "main": ["dist/hxValidator.0.1.6.min.js", "dist/hxValidator.0.1.6.js"],
   "authors": [
