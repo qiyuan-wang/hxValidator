@@ -1,7 +1,7 @@
 {
-  "name": "hx-validator",
-  "version": "0.1.5",
-  "main": ["dist/hxValidator.0.1.4.min.js", "dist/hxValidator.0.1.4.js"],
+  "name": "hxValidator",
+  "version": "0.1.6",
+  "main": ["dist/hxValidator.0.1.6.min.js", "dist/hxValidator.0.1.6.js"],
   "authors": [
     "qiyuan-wang <zephyrisalive@gmail.com>"
   ],
@@ -11,7 +11,7 @@
     "validate"
   ],
   "license": "MIT",
-  "homepage": "qiyuan-wang.github.io/hxValidator",
+  "homepage": "http://qiyuan-wang.github.io/hxValidator",
   "ignore": [
     "**/.*",
     "node_modules",

@@ -240,7 +240,7 @@ Check [this example][demo2] Which use all thoese callbacks for styling with pass
 
 
 ## Changelog
-
+- 0.1.6 add bower install
 - 0.1.0 release
 - 0.0.10 add readme
 - 0.0.9 rewrite with pure js
