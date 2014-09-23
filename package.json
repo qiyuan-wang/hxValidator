@@ -1,19 +1,19 @@
 {
   "name": "hxValidator",
-  "version": "0.1.1",
-  "description": "Form validator that huxiu.com used.",
+  "version": "0.1.2",
+  "description": "A lightweight, easily scalable JavaScript form validation library",
   "keywords": [
-    "jquery-plugin"
+    "Javascript validator", "JS", "form"
   ],
   "homepage": "http://www.huxiu.com",
-  "bugs": "https://github.com/zephyrisalive/hx-validator/issues",
+  "bugs": "https://github.com/qiyuan-wang/hxValidator/issues",
   "author": {
     "name": "zisasign",
     "email": "zephyrisalive@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zephyrisalive/hx-validator"
+    "url": "https://github.com/qiyuan-wang/hxValidator"
   },
   "licenses": [
     {
