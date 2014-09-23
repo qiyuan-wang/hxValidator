@@ -1,6 +1,7 @@
 {
   "name": "hx-validator",
   "version": "0.1.4",
+  "main": ["/dist/hxValidator.0.1.4.min.js", "/dist/hxValidator.0.1.4.js"],
   "authors": [
     "qiyuan-wang <zephyrisalive@gmail.com>"
   ],
